@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo · Marketing de Alto Octanaje · Creative Place Peru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+:root{
+  --dark:#0A0A0A;--bg:#0D0D0D;--bg2:#141414;--bg3:#1C1C1C;--bg4:#242424;
+  --y:#F7C31A;--white:#FFF;
+  --f1:#1D9E75;--f2:#7B6FE8;--f3:#E05C30;--f4:#C9930A;
+  --gray:#555;--gray2:#333;--gray3:#888;
+  --rc:#F7C31A;
+  --fd:'Syne',sans-serif;--fs:'Instrument Serif',serif;--fm:'DM Mono',monospace;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--fd);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.4}
+
+/* SELECTOR */
+#selector{position:fixed;inset:0;z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--dark);padding:2rem;transition:opacity .7s ease,transform .7s ease}
+#selector.hide{opacity:0;pointer-events:none;transform:scale(1.03)}
+.sel-brand{font-family:var(--fm);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--y);margin-bottom:2rem}
+.sel-title{font-size:clamp(1.8rem,5vw,3.6rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.95;text-align:center;margin-bottom:.6rem}
+.sel-sub{font-family:var(--fs);font-style:italic;font-size:clamp(.85rem,1.8vw,1.1rem);color:var(--gray3);margin-bottom:2.5rem;text-align:center}
+.rubro-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;max-width:860px;width:100%;margin-bottom:1.5rem}
+.rb{background:var(--bg3);border:1px solid var(--bg4);border-radius:6px;padding:1.3rem 1rem;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:.6rem;text-align:center}
+.rb:hover{border-color:var(--y);background:var(--bg2);transform:translateY(-3px)}
+.rb.sel{border-color:var(--y);background:var(--bg2)}
+.rb-icon{font-size:1.9rem;transition:transform .2s}
+.rb.sel .rb-icon{transform:scale(1.15)}
+.rb-name{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1.2}
+.rb-sub{font-family:var(--fm);font-size:.57rem;color:var(--gray3);line-height:1.3}
+.sel-cta{background:var(--y);color:var(--dark);font-family:var(--fd);font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;padding:1rem 3rem;border:none;border-radius:3px;cursor:pointer;transition:all .25s;opacity:0;pointer-events:none;transform:translateY(8px)}
+.sel-cta.show{opacity:1;pointer-events:all;transform:translateY(0)}
+.sel-cta:hover{background:#e0af00}
+.sel-hint{font-family:var(--fm);font-size:.58rem;color:var(--gray);margin-top:.9rem;letter-spacing:.1em}
+
+/* APP */
+#app{display:flex;height:100vh;overflow:hidden;opacity:0;transition:opacity .5s ease}
+#app.show{opacity:1}
+
+/* SIDEBAR */
+#sb{width:254px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--bg3);display:flex;flex-direction:column;overflow:hidden}
+.sb-head{padding:1.2rem 1.3rem .8rem;border-bottom:1px solid var(--bg3)}
+.sb-brand{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--y);margin-bottom:.35rem}
+.sb-rub{font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:.45rem}
+.sb-dot{width:7px;height:7px;border-radius:50%;background:var(--rc);flex-shrink:0}
+.sb-chg{font-family:var(--fm);font-size:.57rem;color:var(--gray3);letter-spacing:.08em;cursor:pointer;margin-top:.4rem;display:inline-block;transition:color .15s}
+.sb-chg:hover{color:var(--y)}
+.sb-nav{flex:1;overflow-y:auto;padding:.7rem 0}
+.sb-nav::-webkit-scrollbar{width:2px}
+.sb-nav::-webkit-scrollbar-thumb{background:var(--bg4)}
+.ni{padding:.55rem 1.3rem;display:flex;align-items:center;gap:.7rem;cursor:pointer;transition:background .15s;border-left:2px solid transparent}
+.ni:hover,.ni.act{background:var(--bg3)}
+.ni-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:transform .2s}
+.ni.act .ni-dot{transform:scale(1.4)}
+.ni-lbl{font-size:.73rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.ni-sub{font-family:var(--fm);font-size:.57rem;color:var(--gray3);margin-top:.1rem}
+.sb-prog{padding:.8rem 1.3rem;border-top:1px solid var(--bg3)}
+.pg-lbl{font-family:var(--fm);font-size:.57rem;color:var(--gray3);margin-bottom:.35rem;display:flex;justify-content:space-between}
+.pg-track{height:2px;background:var(--bg4);border-radius:1px;overflow:hidden}
+.pg-fill{height:100%;background:var(--y);border-radius:1px;transition:width .4s ease;width:0%}
+
+/* CONTENT */
+#ct{flex:1;overflow-y:auto;scroll-behavior:smooth}
+#ct::-webkit-scrollbar{width:3px}
+#ct::-webkit-scrollbar-thumb{background:var(--bg4)}
+
+/* SECTIONS */
+.sec{min-height:100vh;padding:3.5rem;position:relative;border-bottom:1px solid var(--bg3)}
+.sec::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.sec[data-s=intro]::before{background:var(--y)}
+.sec[data-s=f1]::before{background:var(--f1)}
+.sec[data-s=f2]::before{background:var(--f2)}
+.sec[data-s=f3]::before{background:var(--f3)}
+.sec[data-s=f4]::before{background:var(--f4)}
+.ph-ghost{position:absolute;top:2rem;right:2rem;font-size:clamp(5rem,11vw,9rem);font-weight:800;opacity:.05;line-height:1;pointer-events:none}
+
+.ey{font-family:var(--fm);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
+.ey-line{display:inline-block;width:18px;height:2px}
+.hl{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.95;margin-bottom:.35rem}
+.shl{font-family:var(--fs);font-style:italic;font-size:clamp(.9rem,1.6vw,1.1rem);color:var(--gray3);margin-bottom:1.8rem}
+
+.rc-bar{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .9rem;border-radius:2px;margin-bottom:1.3rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;border:1px solid}
+
+.card{background:var(--bg2);border:1px solid var(--bg3);border-radius:4px;padding:1.3rem;transition:all .2s}
+.card:hover{border-color:var(--bg4);transform:translateY(-1px)}
+.c-lbl{font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.65rem}
+.c-ttl{font-size:.92rem;font-weight:700;margin-bottom:.45rem;line-height:1.2}
+.c-body{font-size:.8rem;color:var(--gray3);line-height:1.65}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.3rem}
+
+.pain{padding:1.3rem 1.7rem;border-radius:4px;margin-bottom:1.3rem;border-left:4px solid}
+.pain-q{font-family:var(--fs);font-style:italic;font-size:clamp(.95rem,1.9vw,1.25rem);line-height:1.6;margin-bottom:.5rem}
+.pain-src{font-family:var(--fm);font-size:.6rem;color:var(--gray3);letter-spacing:.08em}
+
+.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.65rem;margin-bottom:1.3rem}
+.art{background:var(--bg);border:1px solid var(--bg3);border-radius:3px;padding:.85rem .9rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.art::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px}
+.art[data-ph=f1]::before{background:var(--f1)}
+.art[data-ph=f2]::before{background:var(--f2)}
+.art[data-ph=f3]::before{background:var(--f3)}
+.art[data-ph=f4]::before{background:var(--f4)}
+.art:hover{border-color:rgba(247,195,26,.25);background:var(--bg2)}
+.a-ic{font-size:.95rem;margin-bottom:.35rem}
+.a-nm{font-size:.72rem;font-weight:600;line-height:1.25;margin-bottom:.22rem}
+.a-tp{font-family:var(--fm);font-size:.56rem;color:var(--gray3)}
+.a-hint{font-family:var(--fm);font-size:.52rem;color:var(--gray);margin-top:.35rem;transition:color .15s}
+.art:hover .a-hint{color:var(--y)}
+
+.crit{border-radius:3px;padding:1rem 1.2rem;display:flex;gap:.8rem;align-items:flex-start;margin-bottom:1.1rem}
+.cr-ic{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+.cr-ttl{font-size:.83rem;font-weight:700;margin-bottom:.25rem}
+.cr-li{list-style:none}
+.cr-li li{font-size:.76rem;color:var(--gray3);padding:.18rem 0;display:flex;gap:.38rem}
+.cr-li li::before{content:'✓';color:var(--f1);font-weight:700;flex-shrink:0}
+
+.out{border-radius:3px;padding:1rem 1.2rem;margin-bottom:1.1rem;border-left:3px solid}
+.out-lbl{font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.35rem}
+.out-txt{font-size:.83rem;line-height:1.6}
+
+.bp-row{padding:.45rem .65rem;border-radius:2px;font-size:.76rem;display:flex;gap:.4rem}
+.bp-lbl{font-weight:700;flex-shrink:0}
+.bp-val{color:var(--gray3)}
+
+/* FINAL */
+#fin{background:var(--bg2);min-height:55vh;padding:3.5rem;display:flex;flex-direction:column;justify-content:center}
+.fin-ttl{font-size:clamp(1.9rem,5vw,3.8rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.95;margin-bottom:.9rem}
+.s-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.8rem}
+.stat{background:var(--bg);border:1px solid var(--bg3);border-radius:3px;padding:1rem}
+.s-n{font-size:2.1rem;font-weight:800;line-height:1;margin-bottom:.2rem}
+.s-l{font-family:var(--fm);font-size:.58rem;color:var(--gray3);letter-spacing:.08em}
+.contact{background:var(--dark);border:1px solid var(--bg3);border-radius:3px;padding:.9rem 1.2rem;font-family:var(--fm);font-size:.7rem;color:var(--gray3)}
+.contact span{color:var(--y);margin:0 .35rem}
+
+/* PHASE COLORS */
+[data-s=f1] .ey,[data-s=f1] .hl,[data-s=f1] .c-lbl{color:var(--f1)}
+[data-s=f2] .ey,[data-s=f2] .hl,[data-s=f2] .c-lbl{color:var(--f2)}
+[data-s=f3] .ey,[data-s=f3] .hl,[data-s=f3] .c-lbl{color:var(--f3)}
+[data-s=f4] .ey,[data-s=f4] .hl,[data-s=f4] .c-lbl{color:var(--f4)}
+[data-s=f1] .out{border-color:var(--f1);background:rgba(29,158,117,.05)}
+[data-s=f2] .out{border-color:var(--f2);background:rgba(123,111,232,.05)}
+[data-s=f3] .out{border-color:var(--f3);background:rgba(224,92,48,.05)}
+[data-s=f4] .out{border-color:var(--f4);background:rgba(201,147,10,.05)}
+[data-s=f1] .crit{background:rgba(29,158,117,.06);border:1px solid rgba(29,158,117,.2)}
+[data-s=f2] .crit{background:rgba(123,111,232,.06);border:1px solid rgba(123,111,232,.2)}
+[data-s=f3] .crit{background:rgba(224,92,48,.06);border:1px solid rgba(224,92,48,.2)}
+[data-s=f4] .crit{background:rgba(201,147,10,.06);border:1px solid rgba(201,147,10,.2)}
+[data-s=f1] .pain{border-color:var(--f1);background:rgba(29,158,117,.05)}
+[data-s=f2] .pain{border-color:var(--f2);background:rgba(123,111,232,.05)}
+[data-s=f3] .pain{border-color:var(--f3);background:rgba(224,92,48,.05)}
+[data-s=f4] .pain{border-color:var(--f4);background:rgba(201,147,10,.05)}
+
+/* NAV BTNS */
+.nbts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;gap:.45rem;z-index:100}
+.nb{background:var(--bg3);border:1px solid var(--bg4);color:var(--white);padding:.6rem 1.2rem;font-family:var(--fd);font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:all .15s}
+.nb:hover{background:var(--bg4)}
+.nb.p{background:var(--y);color:var(--dark);border-color:var(--y)}
+.nb.p:hover{background:#e0af00}
+.nb:disabled{opacity:.3;cursor:not-allowed}
+
+/* MODAL */
+#mo{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(10px)}
+#mo.open{opacity:1;pointer-events:all}
+#md{background:var(--bg2);border:1px solid var(--bg3);border-radius:6px;width:min(540px,90vw);max-height:76vh;overflow-y:auto;padding:1.7rem;transform:translateY(14px);transition:transform .25s ease;position:relative}
+#mo.open #md{transform:translateY(0)}
+#md::-webkit-scrollbar{width:2px}
+#md::-webkit-scrollbar-thumb{background:var(--bg4)}
+#mc{position:absolute;top:.8rem;right:.8rem;background:var(--bg4);border:none;color:var(--white);width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:background .15s}
+#mc:hover{background:var(--gray2)}
+
+@media(max-width:840px){
+  #sb{display:none}
+  .sec{padding:2rem 1.4rem}
+  .g2,.s-row{grid-template-columns:1fr}
+  .rubro-grid{grid-template-columns:repeat(3,1fr)}
+  #fin{padding:2rem 1.4rem}
+}
+</style>
+</head>
+<body>
+
+<div id="selector">
+  <p class="sel-brand">Creative Place Peru · Marketing de Alto Octanaje</p>
+  <h1 class="sel-title">¿En qué sector<br>está tu empresa?</h1>
+  <p class="sel-sub">La demo se adapta a tu rubro — ejemplos reales, pain points específicos de tu industria</p>
+  <div class="rubro-grid">
+    <button class="rb" data-r="restaurantes" onclick="pick(this)"><span class="rb-icon">🍽</span><span class="rb-name">Restaurantes</span><span class="rb-sub">Gastronomía y negocios afines</span></button>
+    <button class="rb" data-r="hoteleria" onclick="pick(this)"><span class="rb-icon">🏨</span><span class="rb-name">Hotelería</span><span class="rb-sub">Hoteles, Lodges, Airbnb</span></button>
+    <button class="rb" data-r="turismo" onclick="pick(this)"><span class="rb-icon">✈</span><span class="rb-name">Turismo</span><span class="rb-sub">Agencias y operadoras</span></button>
+    <button class="rb" data-r="servicios" onclick="pick(this)"><span class="rb-icon">💼</span><span class="rb-name">Servicios</span><span class="rb-sub">B2B y profesionales</span></button>
+    <button class="rb" data-r="retail" onclick="pick(this)"><span class="rb-icon">🛍</span><span class="rb-name">Retail</span><span class="rb-sub">Comercio y tiendas</span></button>
+  </div>
+  <button class="sel-cta" id="scta" onclick="go()">Ver mi demo →</button>
+  <p class="sel-hint">Puedes cambiar el rubro en cualquier momento</p>
+</div>
+
+<div id="app">
+  <nav id="sb">
+    <div class="sb-head">
+      <div class="sb-brand">Creative Place Peru</div>
+      <div class="sb-rub"><div class="sb-dot" id="sbd"></div><span id="sbr">—</span></div>
+      <span class="sb-chg" onclick="reset()">↩ cambiar rubro</span>
+    </div>
+    <div class="sb-nav">
+      <div class="ni act" onclick="gt('intro')" id="ni-intro"><div class="ni-dot" style="background:var(--y)"></div><div><div class="ni-lbl" style="color:var(--y)">Introducción</div><div class="ni-sub">El sistema</div></div></div>
+      <div class="ni" onclick="gt('f1')" id="ni-f1"><div class="ni-dot" style="background:var(--f1)"></div><div><div class="ni-lbl" style="color:var(--f1)">F1 · Diagnóstico</div><div class="ni-sub">¿Dónde estás hoy?</div></div></div>
+      <div class="ni" onclick="gt('f2')" id="ni-f2"><div class="ni-dot" style="background:var(--f2)"></div><div><div class="ni-lbl" style="color:var(--f2)">F2 · Estrategia</div><div class="ni-sub">¿A dónde vas?</div></div></div>
+      <div class="ni" onclick="gt('f3')" id="ni-f3"><div class="ni-dot" style="background:var(--f3)"></div><div><div class="ni-lbl" style="color:var(--f3)">F3 · Sistema</div><div class="ni-sub">¿Cómo lo construyes?</div></div></div>
+      <div class="ni" onclick="gt('f4')" id="ni-f4"><div class="ni-dot" style="background:var(--f4)"></div><div><div class="ni-lbl" style="color:var(--f4)">F4 · Control</div><div class="ni-sub">¿Cómo lo mides?</div></div></div>
+    </div>
+    <div class="sb-prog">
+      <div class="pg-lbl"><span>Progreso</span><span id="pgp">0%</span></div>
+      <div class="pg-track"><div class="pg-fill" id="pgf"></div></div>
+    </div>
+  </nav>
+
+  <main id="ct">
+
+    <!-- INTRO -->
+    <div class="sec" data-s="intro" id="intro">
+      <div class="ey" id="i-ey"><span class="ey-line" style="background:var(--y)"></span><span style="color:var(--y)">Sistema consultivo · 4 fases · 26 instrumentos</span></div>
+      <h1 class="hl" id="i-hl">Marketing de Alto Octanaje</h1>
+      <p class="shl" id="i-shl">El sistema que convierte el marketing en ventaja competitiva medible.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:1.4rem">
+        <div style="background:var(--bg2);padding:1rem"><div style="font-family:var(--fm);font-size:.58rem;color:var(--f1);margin-bottom:.25rem">01</div><div style="font-size:.82rem;font-weight:700;text-transform:uppercase;color:var(--f1);margin-bottom:.2rem">Diagnóstico</div><div style="font-size:.7rem;color:var(--gray3);font-family:var(--fs);font-style:italic">¿Dónde estás hoy?</div></div>
+        <div style="background:var(--bg2);border-left:1px solid var(--bg3);padding:1rem"><div style="font-family:var(--fm);font-size:.58rem;color:var(--f2);margin-bottom:.25rem">02</div><div style="font-size:.82rem;font-weight:700;text-transform:uppercase;color:var(--f2);margin-bottom:.2rem">Estrategia</div><div style="font-size:.7rem;color:var(--gray3);font-family:var(--fs);font-style:italic">¿A dónde vas?</div></div>
+        <div style="background:var(--bg2);border-left:1px solid var(--bg3);padding:1rem"><div style="font-family:var(--fm);font-size:.58rem;color:var(--f3);margin-bottom:.25rem">03</div><div style="font-size:.82rem;font-weight:700;text-transform:uppercase;color:var(--f3);margin-bottom:.2rem">Sistema</div><div style="font-size:.7rem;color:var(--gray3);font-family:var(--fs);font-style:italic">¿Cómo lo construyes?</div></div>
+        <div style="background:var(--bg2);border-left:1px solid var(--bg3);padding:1rem"><div style="font-family:var(--fm);font-size:.58rem;color:var(--f4);margin-bottom:.25rem">04</div><div style="font-size:.82rem;font-weight:700;text-transform:uppercase;color:var(--f4);margin-bottom:.2rem">Control</div><div style="font-size:.7rem;color:var(--gray3);font-family:var(--fs);font-style:italic">¿Cómo lo mides?</div></div>
+      </div>
+      <div class="g2">
+        <div class="card"><div class="c-lbl" style="color:var(--y)">El problema real</div><div class="c-ttl" id="i-prob">Tu negocio no tiene un problema de herramientas.</div><div class="c-body" id="i-pdesc">Tiene un problema de falta de sistema.</div></div>
+        <div class="card"><div class="c-lbl" style="color:var(--y)">El principio del método</div><div class="c-ttl">Criterios de transición verificables</div><div class="c-body">Ninguna fase comienza sin que la anterior esté cerrada. Cada transición tiene condiciones binarias que se cumplen o no se cumplen.</div></div>
+      </div>
+    </div>
+
+    <!-- F1 -->
+    <div class="sec" data-s="f1" id="f1">
+      <div class="ph-ghost" style="color:var(--f1)">01</div>
+      <div class="ey"><span class="ey-line" style="background:var(--f1)"></span>Fase 1 · Diagnóstico</div>
+      <h2 class="hl">Diagnóstico</h2>
+      <p class="shl">¿Dónde está tu negocio hoy?</p>
+      <div class="rc-bar" id="f1-bar" style="color:var(--f1);border-color:rgba(29,158,117,.3);background:rgba(29,158,117,.06)">Cómo evaluamos tu negocio</div>
+      <div class="pain" data-s="f1"><div class="pain-q" id="f1-pain">"..."</div><div class="pain-src" id="f1-src">— Buyer Persona</div></div>
+      <div class="g2">
+        <div class="card"><div class="c-lbl">Qué evaluamos</div><div class="c-body" id="f1-desc" style="color:var(--white)">Evaluamos el marketing en 4 áreas con el Checklist de 38 ítems ponderados.</div></div>
+        <div class="card"><div class="c-lbl">Los 3 niveles</div>
+          <div style="display:flex;flex-direction:column;gap:.45rem">
+            <div style="padding:.55rem;background:rgba(224,92,48,.1);border-radius:2px;border:1px solid rgba(224,92,48,.2)"><span style="font-size:.7rem;font-weight:700;color:#E05C30">0–40% · Básico</span><br><span style="font-size:.7rem;color:var(--gray3)">Fundamentos incompletos. Construir primero.</span></div>
+            <div style="padding:.55rem;background:rgba(201,147,10,.1);border-radius:2px;border:1px solid rgba(201,147,10,.2)"><span style="font-size:.7rem;font-weight:700;color:var(--f4)">41–70% · Intermedio</span><br><span style="font-size:.7rem;color:var(--gray3)">Base en desarrollo. Cerrar brechas críticas.</span></div>
+            <div style="padding:.55rem;background:rgba(29,158,117,.1);border-radius:2px;border:1px solid rgba(29,158,117,.2)"><span style="font-size:.7rem;font-weight:700;color:var(--f1)">71–100% · Alto Octanaje</span><br><span style="font-size:.7rem;color:var(--gray3)">Sistema integrado. Optimizar y escalar.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="c-lbl" style="color:var(--f1);margin-bottom:.65rem">Artefactos — clic para ver detalle</div>
+      <div class="art-grid">
+        <div class="art" data-ph="f1" onclick="om('onboarding')"><div class="a-ic">🤝</div><div class="a-nm">Protocolo de Onboarding</div><div class="a-tp">Word · Consultor</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f1" onclick="om('checklist')"><div class="a-ic">✅</div><div class="a-nm">Checklist Diagnóstico</div><div class="a-tp">Excel · 38 ítems</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f1" onclick="om('dash-ej')"><div class="a-ic">📊</div><div class="a-nm">Dashboard Ejecutivo</div><div class="a-tp">Excel · IMM visual</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f1" onclick="om('informe')"><div class="a-ic">📄</div><div class="a-nm">Informe de Diagnóstico</div><div class="a-tp">Word · Output firmado</div><div class="a-hint">→ detalle</div></div>
+      </div>
+      <div class="out"><div class="out-lbl" style="color:var(--f1)">Output</div><div class="out-txt" id="f1-out">Informe firmado con IMM, análisis por área y Top 5 brechas priorizadas.</div></div>
+      <div class="crit"><div class="cr-ic">🔒</div><div><div class="cr-ttl" style="color:var(--f1)">Para avanzar a F2</div><ul class="cr-li"><li>Informe firmado por el cliente</li><li>IMM calculado y clasificado</li><li>Aprobación escrita para F2</li></ul></div></div>
+    </div>
+
+    <!-- F2 -->
+    <div class="sec" data-s="f2" id="f2">
+      <div class="ph-ghost" style="color:var(--f2)">02</div>
+      <div class="ey"><span class="ey-line" style="background:var(--f2)"></span>Fase 2 · Estrategia</div>
+      <h2 class="hl">Estrategia</h2>
+      <p class="shl">¿A dónde vas y cómo te posicionas?</p>
+      <div class="rc-bar" id="f2-bar" style="color:var(--f2);border-color:rgba(123,111,232,.3);background:rgba(123,111,232,.06)">Tu estrategia</div>
+      <div class="g2">
+        <div class="card"><div class="c-lbl">Qué construimos</div><div class="c-body" id="f2-desc" style="color:var(--white)">Buyer Persona, Estrategia de Marca y OKRs en 4 perspectivas del BSC.</div></div>
+        <div class="card"><div class="c-lbl">Tu cliente ideal</div><div id="f2-bp" style="display:flex;flex-direction:column;gap:.35rem"></div></div>
+      </div>
+      <div class="c-lbl" style="color:var(--f2);margin-bottom:.65rem">Artefactos</div>
+      <div class="art-grid">
+        <div class="art" data-ph="f2" onclick="om('bp')"><div class="a-ic">👤</div><div class="a-nm">Buyer Persona</div><div class="a-tp">Word · VPC · 2 perfiles</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f2" onclick="om('emarca')"><div class="a-ic">🎨</div><div class="a-nm">Estrategia de Marca</div><div class="a-tp">Word editorial · 9 secciones</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f2" onclick="om('okrs')"><div class="a-ic">🎯</div><div class="a-nm">OKRs + Plan Marketing</div><div class="a-tp">Word · BSC</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f2" onclick="om('criterios')"><div class="a-ic">🔒</div><div class="a-nm">Criterios de Transición</div><div class="a-tp">Word · Control</div><div class="a-hint">→ detalle</div></div>
+      </div>
+      <div class="out"><div class="out-lbl" style="color:var(--f2)">Output</div><div class="out-txt" id="f2-out">Estrategia de Marca + Hoja de Ruta con OKRs aprobada.</div></div>
+      <div class="crit"><div class="cr-ic">🔒</div><div><div class="cr-ttl" style="color:var(--f2)">Para avanzar a F3</div><ul class="cr-li"><li>OKRs con ≥3 KRs cuantitativos</li><li>Buyer Persona completo</li><li>Presupuesto acordado</li></ul></div></div>
+    </div>
+
+    <!-- F3 -->
+    <div class="sec" data-s="f3" id="f3">
+      <div class="ph-ghost" style="color:var(--f3)">03</div>
+      <div class="ey"><span class="ey-line" style="background:var(--f3)"></span>Fase 3 · Sistema</div>
+      <h2 class="hl">Sistema</h2>
+      <p class="shl">¿Cómo construyes la máquina?</p>
+      <div class="rc-bar" id="f3-bar" style="color:var(--f3);border-color:rgba(224,92,48,.3);background:rgba(224,92,48,.06)">Tu ecosistema</div>
+      <div class="card" style="margin-bottom:1.2rem"><div class="c-lbl">Qué diseñamos</div><div class="c-body" id="f3-desc" style="color:var(--white)">La arquitectura completa del ecosistema de marketing.</div></div>
+      <div class="c-lbl" style="color:var(--f3);margin-bottom:.65rem">Artefactos</div>
+      <div class="art-grid">
+        <div class="art" data-ph="f3" onclick="om('ecom')"><div class="a-ic">📡</div><div class="a-nm">Estrategia Comunicación</div><div class="a-tp">Excel · Motor automatizado</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f3" onclick="om('brochure')"><div class="a-ic">📰</div><div class="a-nm">Brochure CP</div><div class="a-tp">Word · Para prospectos</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f3" onclick="om('propuesta')"><div class="a-ic">💼</div><div class="a-nm" id="f3-pname">Propuesta del Rubro</div><div class="a-tp">Word · Adaptada al sector</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f3" onclick="om('ficha')"><div class="a-ic">⚙️</div><div class="a-nm">Ficha Técnica</div><div class="a-tp">Excel · Catálogo + calculadora</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f3" onclick="om('protocolo')"><div class="a-ic">🔒</div><div class="a-nm">Protocolo Entrega F3+F4</div><div class="a-tp">Word · 5 sesiones</div><div class="a-hint">→ detalle</div></div>
+      </div>
+      <div class="out"><div class="out-lbl" style="color:var(--f3)">Output</div><div class="out-txt" id="f3-out">Sistema listo: canales, materiales y propuesta adaptada al rubro.</div></div>
+      <div class="crit"><div class="cr-ic">🔒</div><div><div class="cr-ttl" style="color:var(--f3)">Para avanzar a F4</div><ul class="cr-li"><li>Artefactos aprobados por tutor</li><li>Drive organizado y navegable</li><li>Test de autonomía superado</li></ul></div></div>
+    </div>
+
+    <!-- F4 -->
+    <div class="sec" data-s="f4" id="f4">
+      <div class="ph-ghost" style="color:var(--f4)">04</div>
+      <div class="ey"><span class="ey-line" style="background:var(--f4)"></span>Fase 4 · Control</div>
+      <h2 class="hl">Control</h2>
+      <p class="shl">¿Cómo sabes que está funcionando?</p>
+      <div class="rc-bar" id="f4-bar" style="color:var(--f4);border-color:rgba(201,147,10,.3);background:rgba(201,147,10,.06)">Tus métricas</div>
+      <div class="g2">
+        <div class="card"><div class="c-lbl">Qué configuramos</div><div class="c-body" id="f4-desc" style="color:var(--white)">Dashboard de Monitoreo con 10 KPIs reales. El objetivo: que no nos necesites.</div></div>
+        <div class="card"><div class="c-lbl">Los 10 KPIs del sistema</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.28rem">
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">CAC</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">LTV</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">ROI marketing</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">Tasa conversión</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">Alcance orgánico</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">Engagement rate</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">Tráfico web</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">Nuevos clientes</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">Tasa retención</div>
+            <div style="padding:.28rem .5rem;background:var(--bg);border-radius:2px;font-family:var(--fm);font-size:.58rem;color:var(--gray3)">NPS</div>
+          </div>
+        </div>
+      </div>
+      <div class="art-grid">
+        <div class="art" data-ph="f4" onclick="om('dash-mon')"><div class="a-ic">📈</div><div class="a-nm">Dashboard Monitoreo</div><div class="a-tp">Excel · 10 KPIs</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f4" onclick="om('flujograma')"><div class="a-ic">🗺️</div><div class="a-nm">Flujograma del Método</div><div class="a-tp">Excel · 3 vistas</div><div class="a-hint">→ detalle</div></div>
+        <div class="art" data-ph="f4" onclick="om('procesos')"><div class="a-ic">⚙️</div><div class="a-nm">Procesos Internos</div><div class="a-tp">Word · 4 procesos + RACI</div><div class="a-hint">→ detalle</div></div>
+      </div>
+      <div class="out"><div class="out-lbl" style="color:var(--f4)">Output final</div><div class="out-txt" id="f4-out">Dashboard activo, procesos documentados y autonomía operativa completa.</div></div>
+      <div class="crit"><div class="cr-ic">🏁</div><div><div class="cr-ttl" style="color:var(--f4)">Cierre del sistema</div><ul class="cr-li"><li>Dashboard con datos reales</li><li>Test de autonomía superado</li><li>Acta de cierre firmada</li><li>Revisión trimestral agendada</li></ul></div></div>
+    </div>
+
+    <!-- FINAL -->
+    <div id="fin">
+      <p style="font-family:var(--fm);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);margin-bottom:.9rem">Sistema completo</p>
+      <h2 class="fin-ttl">El método está<br><span style="color:var(--y)">construido.</span></h2>
+      <p style="font-family:var(--fs);font-style:italic;color:var(--gray3);font-size:1rem;max-width:460px;line-height:1.7;margin-bottom:1.8rem" id="fin-sub">26 instrumentos. 4 fases verificables. Sistema transferible.</p>
+      <div class="s-row">
+        <div class="stat"><div class="s-n" style="color:var(--f1)">26+</div><div class="s-l">Instrumentos</div></div>
+        <div class="stat"><div class="s-n" style="color:var(--f2)">4</div><div class="s-l">Fases verificables</div></div>
+        <div class="stat"><div class="s-n" style="color:var(--f3)">10</div><div class="s-l">KPIs en dashboard</div></div>
+        <div class="stat"><div class="s-n" style="color:var(--f4)">5</div><div class="s-l">Rubros</div></div>
+      </div>
+      <div class="contact">Creative Place Peru<span>·</span>marketing@creativeplace.org<span>·</span>+51 987 272 727<span>·</span>www.creativeplace.org</div>
+    </div>
+  </main>
+</div>
+
+<div class="nbts" id="nbts" style="display:none">
+  <button class="nb" id="bprev" onclick="nav(-1)" disabled>← Anterior</button>
+  <button class="nb p" id="bnext" onclick="nav(1)">Siguiente →</button>
+</div>
+
+<div id="mo" onclick="cm(event)">
+  <div id="md"><button id="mc" onclick="cm({target:document.getElementById('mc')})">✕</button><div id="mb"></div></div>
+</div>
+
+<script>
+const RD = {
+  restaurantes:{n:'Restaurantes',i:'🍽',c:'#E05C30',
+    intro:{prob:'Tu restaurante no tiene un problema de publicidad.',pd:'Tiene un problema de sistema: fotos sin estrategia, RRSS sin plan, Google Maps sin optimizar y cero base de datos de clientes.'},
+    f1:{bar:'Cómo evaluamos tu restaurante',pain:'"Tenemos buena cocina, buen ambiente — pero las mesas no se llenan y no sabemos por qué."',src:'— Carlos/María, dueño de restaurante',desc:'Evaluamos tu Google Maps, la calidad de tus fotos, tus RRSS, tu proceso de reservas y tu base de clientes. El IMM dice si estás invirtiendo en la pista correcta.',out:'IMM con foco en visibilidad, reputación y conversión gastronómica.'},
+    f2:{bar:'Tu estrategia gastronómica',desc:'Definimos a quién quieres atraer (turistas, locales, familias), tu diferencial frente al restaurante de al lado y los OKRs: reservas por mes, reseñas Google y crecimiento de seguidores.',bp:[['👤 Perfil','Dueño/a restaurante 35–55 años'],['🎯 Necesidad','Llenar mesas sin depender de delivery'],['😤 Frustración','Invierte en redes, no ve resultados'],['💬 Objeción','"Ya tenemos Instagram, eso basta."']],out:'Estrategia de Marca editorial + OKRs: reservas, reseñas y frecuencia de visita.'},
+    f3:{bar:'Tu ecosistema gastronómico',desc:'Ficha audiovisual para sesiones de fotos profesionales, plan de contenido para Instagram con calendario de 30 días, WhatsApp Business como canal de reservas y propuesta adaptada al rubro.',pname:'Propuesta Restaurantes',out:'Sistema listo: Google optimizado, contenido planificado, canal de reservas directo.'},
+    f4:{bar:'Métricas de tu restaurante',desc:'Dashboard con KPIs gastronómicos: tasa de ocupación, CAC por canal, LTV por tipo de comensal y NPS. Monitoreo mensual y ajuste trimestral.',out:'Dashboard activo + protocolos de reputación y fidelización documentados.'},
+    fin:'El sistema que llena tus mesas sin depender del boca a boca ni del delivery.'},
+  hoteleria:{n:'Hotelería · Lodges · Airbnb',i:'🏨',c:'#2C7BB5',
+    intro:{prob:'Tu alojamiento no tiene un problema de demanda.',pd:'Tiene un problema de dependencia: Booking, Airbnb y Expedia se llevan hasta el 25% de comisión. Sin canal propio ni base de huéspedes, cada cliente es como si fuera el primero.'},
+    f1:{bar:'Diagnóstico de captación directa',pain:'"Pagamos hasta 25% de comisión a Booking y no tenemos ni un canal propio que nos traiga reservas directas."',src:'— Patricia/Roberto, propietario de lodge en Cusco',desc:'Evaluamos tu dependencia de OTAs, tu base de huéspedes, tu perfil en TripAdvisor y Google, y tu proceso de reserva directa. Calculamos cuánto estás cediendo en comisiones.',out:'IMM enfocado en canal directo, reputación y base de datos de huéspedes.'},
+    f2:{bar:'Tu estrategia de captación directa',desc:'Definimos tu Buyer Persona de viajero (internacional, nacional, corporativo), tu diferencial frente a otros alojamientos y los OKRs: porcentaje de reservas directas, tasa de retorno y CAC.',bp:[['👤 Perfil','Admin. lodge boutique 38–60 años'],['🎯 Necesidad','Más reservas directas'],['😤 Frustración','Sin base de datos de huéspedes'],['💬 Objeción','"Booking ya nos trae clientes."']],out:'Estrategia de Marca experiencial + OKRs de canal directo.'},
+    f3:{bar:'Tu ecosistema de captación',desc:'Landing page con formulario de reserva directa, secuencia de email marketing post-estadía, protocolo de reputación online y propuesta comercial adaptada al sector hotelero.',pname:'Propuesta Hotelería',out:'Canal propio listo: landing, email marketing, sistema de reseñas.'},
+    f4:{bar:'Métricas de alojamiento',desc:'Dashboard con KPIs hoteleros: ocupación directa vs OTA, CAC por canal, LTV por tipo de huésped. Meta: 30% reservas directas en 6 meses.',out:'Dashboard hotelero + protocolo de gestión de reputación documentado.'},
+    fin:'El sistema que reduce comisiones y construye tu canal propio en Cusco.'},
+  turismo:{n:'Turismo · Agencias',i:'✈',c:'#1D9E75',
+    intro:{prob:'Tu agencia no tiene un problema de calidad en los tours.',pd:'Tiene un problema de visibilidad directa: los turistas llegan por intermediarios. Sin web optimizada ni canal propio, dependes siempre de un agente o plataforma que se lleva su comisión.'},
+    f1:{bar:'Diagnóstico de captación turística',pain:'"Tenemos los mejores tours de la región, pero los clientes nos encuentran a través de intermediarios — no sabemos cómo llegar solos al viajero."',src:'— Diego/Ana, operador turístico en Cusco',desc:'Evaluamos tu web, la calidad de tus fotos de tours, tu posición en Google y TripAdvisor, y tu proceso de conversión de consultas en reservas.',out:'IMM con foco en captación directa, visibilidad y conversión.'},
+    f2:{bar:'Tu estrategia de posicionamiento',desc:'Definimos tu Buyer Persona de viajero (extranjero premium, nacional aventurero, corporativo), tu diferencial y los OKRs: reservas directas, tasa de recomendación y CAC.',bp:[['👤 Perfil','Viajero 28–55 años'],['🎯 Necesidad','Tour auténtico y organizado'],['😤 Frustración','Tours genéricos sin diferencial'],['💬 Objeción','"Reservo por Viator."']],out:'Estrategia de Marca experiencial + storytelling de los tours.'},
+    f3:{bar:'Tu ecosistema de captación',desc:'Landing de experiencias con copy narrativo por tour, sistema de captación de testimonios, estrategia de contenido en Instagram y YouTube, propuesta comercial para el sector turístico.',pname:'Propuesta Turismo',out:'Canal propio: landing, testimonios, contenido experiencial y materiales de venta.'},
+    f4:{bar:'Métricas de captación turística',desc:'Dashboard con KPIs: reservas directas vs intermediadas, CAC por canal, LTV por tipo de viajero y NPS. Documenta el ROI del canal propio.',out:'Dashboard turístico + protocolo de captación de testimonios.'},
+    fin:'El sistema que lleva a tu agencia del referido al canal propio.'},
+  servicios:{n:'Servicios · B2B',i:'💼',c:'#534AB7',
+    intro:{prob:'Tu empresa de servicios no tiene un problema de calidad técnica.',pd:'Tiene un problema de comunicación: tu valor es intangible. Sin propuesta comercial estructurada ni materiales de venta, dependes del pitch verbal y el referido.'},
+    f1:{bar:'Diagnóstico de tu sistema comercial',pain:'"Somos buenos en lo que hacemos, pero no sabemos cómo comunicarlo. Dependemos del referido y no tenemos una propuesta que se venda sola."',src:'— Sandra/Luis, director de empresa de servicios',desc:'Evaluamos tu propuesta de valor documentada, tus materiales comerciales, tu presencia en LinkedIn y tu proceso de captación. Identificamos dónde tiene más fricción tu ciclo de venta.',out:'IMM con foco en Estratégico y Comercial — los más críticos para B2B.'},
+    f2:{bar:'Tu estrategia de posicionamiento B2B',desc:'Definimos tu Buyer Persona empresarial, tu propuesta de valor diferencial y los OKRs: propuestas enviadas, tasa de conversión y tamaño promedio del contrato.',bp:[['👤 Perfil','Director/dueño empresa 32–55'],['🎯 Necesidad','Mejores clientes sin vender por precio'],['😤 Frustración','Sin herramientas de venta formales'],['💬 Objeción','"Nuestros clientes vienen solos."']],out:'Propuesta de valor documentada + OKRs de conversión comercial.'},
+    f3:{bar:'Tu ecosistema comercial B2B',desc:'Propuesta comercial estándar editable, brochure B2B con identidad visual, perfil LinkedIn optimizado y sistema de documentación de casos de éxito.',pname:'Propuesta Servicios B2B',out:'Ecosistema comercial: propuesta, brochure, LinkedIn y casos de éxito.'},
+    f4:{bar:'Métricas comerciales B2B',desc:'Dashboard con KPIs: tasa de conversión de propuestas, CAC, LTV, ciclo de venta promedio y NPS. Hace visible el funnel que hoy es invisible.',out:'Dashboard comercial + proceso de venta documentado con RACI.'},
+    fin:'El sistema que profesionaliza tu propuesta y hace visible tu ciclo de venta.'},
+  retail:{n:'Retail · Comercio',i:'🛍',c:'#BA7517',
+    intro:{prob:'Tu tienda no tiene un problema de producto.',pd:'Tiene un problema de sistema: publicidad sin métricas, clientes sin base de datos, fotos improvisadas. Cada sol invertido en marketing es un misterio.'},
+    f1:{bar:'Diagnóstico de tu sistema de ventas',pain:'"Tenemos producto, local, seguidores — pero las ventas no crecen y no sabemos si el problema es el precio, el canal o el mensaje."',src:'— Jessica/Marco, dueño de tienda en Cusco',desc:'Evaluamos tu ecosistema digital, la calidad de tus fotos, tu base de datos de clientes, tu proceso de venta y tus métricas de conversión. Identificamos qué parte del funnel tiene más fugas.',out:'IMM con foco en Digital y Comercial — cuellos de botella más comunes en retail.'},
+    f2:{bar:'Tu estrategia de posicionamiento retail',desc:'Definimos quién es el cliente que más gasta, más vuelve y más recomienda. Tu diferencial frente a las cadenas. OKRs: ticket promedio, frecuencia de recompra y CAC.',bp:[['👤 Perfil','Comprador/a 25–45 años'],['🎯 Necesidad','Producto de calidad + experiencia'],['😤 Frustración','Solo descuentos, sin fidelización'],['💬 Objeción','"En Mercado Libre está más barato."']],out:'Propuesta diferencial frente a grandes cadenas + OKRs de retención.'},
+    f3:{bar:'Tu ecosistema de venta retail',desc:'Ficha de producto profesional, estrategia de Instagram y WhatsApp Business, email marketing para reactivación de clientes y propuesta adaptada al sector retail.',pname:'Propuesta Retail',out:'Sistema de venta listo: fotos, canales, email marketing y materiales.'},
+    f4:{bar:'Métricas que importan en retail',desc:'Dashboard con KPIs: CAC por canal, LTV, tasa de recompra, ticket promedio y ROI por campaña. Cada sol invertido tiene un retorno medible.',out:'Dashboard retail + proceso de atención al cliente documentado.'},
+    fin:'El sistema que convierte tu tienda en una máquina de clientes frecuentes.'},
+};
+
+const ARTS = {
+  'onboarding':{i:'🤝',n:'Protocolo de Onboarding',f:'F1',fmt:'Word',d:'7 bloques: preparación previa, apertura, 12 preguntas de diagnóstico, aplicación del Checklist, cierre, registro post-sesión y conexión con otros instrumentos.',ins:['Ninguno — es el punto de entrada'],out:['Registro Post-Sesión','Insumo del Informe de Diagnóstico'],k:'Regla de oro: "No documentado = no existe. En construcción = no activo." Si algo está en la cabeza del dueño, puntúa 0.'},
+  'checklist':{i:'✅',n:'Checklist Diagnóstico',f:'F1',fmt:'Excel · 4 pestañas',d:'38 ítems ponderados en 4 áreas con escala binaria 0/1. Calcula el IMM automáticamente. Incluye validación de datos y clasificación de nivel.',ins:['Protocolo → respuestas Bloque 2'],out:['IMM global y por área','Top 5 brechas críticas'],k:'Los ítems tienen peso diferenciado (2% a 5%). Un ítem de peso 5% con puntaje 0 importa más que cinco de peso 2%.'},
+  'dash-ej':{i:'📊',n:'Dashboard Ejecutivo',f:'F1+F4',fmt:'Excel · 4 pestañas',d:'5 tarjetas KPI (IMM global + 4 áreas), tabla de desglose, Top 5 Brechas y pestaña de interpretación en lenguaje ejecutivo.',ins:['Checklist → valores TOTALES por área'],out:['Visualización del IMM para el cliente','Insumo visual del Informe'],k:'Si el Checklist y el Dashboard están en la misma sesión de Excel, el Dashboard se actualiza automáticamente.'},
+  'informe':{i:'📄',n:'Informe de Diagnóstico',f:'F1',fmt:'Word · template',d:'6 secciones: datos, resumen ejecutivo, IMM por área, análisis por área, Top 5 brechas priorizadas, recomendaciones y firma para avanzar.',ins:['Checklist → subtotales','Protocolo → registro post-sesión'],out:['Documento firmado','Criterio de transición F1→F2 cumplido'],k:'Sin firma del cliente no hay F2. Esto protege al consultor y garantiza que el cliente esté comprometido.'},
+  'bp':{i:'👤',n:'Buyer Persona',f:'F2',fmt:'Word · 2 perfiles',d:'Template con Value Proposition Canvas (Osterwalder). Jobs-to-be-done funcionales, sociales y emocionales, frustraciones, alegrías, objeciones y mensaje clave.',ins:['Protocolo → preguntas 4, 11, 12','Checklist → área Estratégico ítems 7–8'],out:['Insumo OKRs perspectiva Cliente','Insumo Estrategia de Marca','Insumo Estrategia de Comunicación'],k:'Es el insumo que más documentos alimenta. Sin Buyer Persona validado, el mensaje de marca no tiene dirección.'},
+  'emarca':{i:'🎨',n:'Estrategia de Marca',f:'F2',fmt:'Word editorial · 9 secciones',d:'Propósito, valores, tono de voz, qué defendemos, mensaje central, pilares del mensaje y arquetipo. Con bloques de insumos trazables y prompts de IA por sección.',ins:['Buyer Persona → jobs, frustraciones','Checklist → área Estratégico ítems 1–6'],out:['Tono de voz para todos los materiales','Pilares del calendario de contenido'],k:'Si los insumos están completos, la IA puede redactar el 80% con los prompts de la Sección 0.'},
+  'okrs':{i:'🎯',n:'OKRs + Plan de Marketing',f:'F2',fmt:'Word',d:'4 perspectivas del BSC: Financiera, Cliente, Procesos, Aprendizaje. Mínimo 3 OKRs con Key Results cuantitativos, plan de acción trimestral y presupuesto.',ins:['Buyer Persona → jobs','Informe → hallazgos'],out:['Metas para el Dashboard','Presupuesto para Estrategia de Comunicación'],k:'Regla de oro: si un Key Result no tiene número, no es un KR — es una actividad.'},
+  'criterios':{i:'🔒',n:'Criterios de Transición',f:'F2→Todas',fmt:'Word',d:'Condiciones verificables para avanzar entre fases. Cada criterio es binario. Con advertencias de no-avance y campos de firma por fase.',ins:['No requiere datos — requiere verificación'],out:['Garantía de calidad del proceso','Protección del consultor y del cliente'],k:'Principio Lean Startup: no avanzas sin validar. Construir sobre base incompleta amplifica los errores.'},
+  'ecom':{i:'📡',n:'Estrategia de Comunicación',f:'F3',fmt:'Excel · 6 pestañas',d:'Motor automatizado: ingresás el IMM, el BP y el presupuesto, y el archivo genera canales recomendados, mix de contenido, distribución de presupuesto y calendario de 30 días.',ins:['Checklist → IMM por área','Buyer Persona → canal y formato','OKRs → presupuesto total'],out:['Canales priorizados con lógica del IMM','Calendario editorial base'],k:'Si el IMM Digital < 40%, el sistema prioriza orgánico antes que pauta. El presupuesto sigue al dato.'},
+  'brochure':{i:'📰',n:'Brochure CP — El Método',f:'F3',fmt:'Word · para prospectos',d:'El problema → Las 4 fases → Beneficios → Entregables por fase → Cómo empezamos → Condiciones → Contacto. Tono editorial, sin tecnicismos.',ins:['Ninguno — documento público'],out:['Prospecto entiende el método sin explicación'],k:'El CTA es la sesión de diagnóstico, no una reunión de ventas. La diferencia importa para el cierre.'},
+  'propuesta':{i:'💼',n:'Propuesta Comercial por Rubro',f:'F3',fmt:'Word · 6 secciones',d:'Para quién, Diagnóstico del rubro, Propuesta de valor, Las 4 fases aplicadas al sector, Entregables, Próximos pasos. Completamente personalizada.',ins:['Propuesta Master → estructura','Ficha Técnica → catálogo'],out:['Propuesta lista para enviar al prospecto'],k:'Son instancias, no productos distintos. El núcleo del método no cambia — cambia la capa de personalización.'},
+  'ficha':{i:'⚙️',n:'Ficha Técnica del Producto',f:'F3',fmt:'Excel · 5 pestañas',d:'Ficha del servicio (7 bloques), catálogo de servicios, precios base, calculadora de propuesta con IGV automático y tabla de propuestas por rubro.',ins:['Ninguno — instrumento de referencia'],out:['Catálogo completo','Calculadora de precio por fases'],k:'La calculadora: seleccionás SI/NO por fase, agregás descuento y el precio con IGV se calcula solo. Lista para mostrar en reunión.'},
+  'protocolo':{i:'🔒',n:'Protocolo de Entrega F3+F4',f:'F3+F4',fmt:'Word · 5 sesiones',d:'5 sesiones documentadas con paso a paso por minutos, guión sugerido, documentos que se usan y criterio de cierre. Registro de sesiones y acta final.',ins:['Instrumento de proceso'],out:['Entrega guiada sin improvisación','Acta de cierre con doble firma'],k:'Resuelve el gap más frecuente: el cliente recibe un Drive con archivos y no sabe qué hacer. Este protocolo guía cada sesión.'},
+  'dash-mon':{i:'📈',n:'Dashboard de Monitoreo',f:'F4',fmt:'Excel · 4 pestañas',d:'Configuración con metas (01), registro mensual de 10 KPIs (02), KPIs calculados con comparativa real vs meta (03) y guía de fórmulas (04).',ins:['OKRs → metas de cada KPI'],out:['Monitoreo mensual','Ratio LTV/CAC y ROI automáticos'],k:'Regla LTV/CAC: < 1x hay pérdida por cliente, 1–3x es viable, > 3x es excelente. Se calcula solo.'},
+  'flujograma':{i:'🗺️',n:'Flujograma del Método',f:'F4',fmt:'Excel · 3 vistas',d:'Vista horizontal por fases, flujo vertical de 26 actividades con responsable y documento, y Matriz RACI de 22 entregables × 7 actores.',ins:['Instrumento de documentación'],out:['Visión completa del método','RACI claro para transferencia'],k:'La Matriz RACI es el instrumento de transferencia más importante. Sin claridad de quién hace qué, la autonomía no es posible.'},
+  'procesos':{i:'⚙️',n:'Documentación de Procesos',f:'F4',fmt:'Word · 4 procesos',d:'Onboarding de nuevo cliente, entrega del Informe, actualización mensual del Dashboard y ajuste trimestral. Cada uno con pasos y RACI.',ins:['Instrumento de documentación'],out:['Equipo opera sin depender de una persona'],k:'Proceso 3: si un KPI lleva 2 meses bajo la meta, se activa automáticamente una revisión estratégica.'},
+};
+
+let cur=null,idx=0;
+const SECS=['intro','f1','f2','f3','f4'];
+function t(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function h(id,v){const e=document.getElementById(id);if(e)e.innerHTML=v}
+
+function pick(btn){
+  document.querySelectorAll('.rb').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  cur=btn.dataset.r;
+  const c=document.getElementById('scta');
+  c.classList.add('show');
+  c.textContent='Ver demo para '+RD[cur].n+' →';
+}
+
+function go(){
+  if(!cur)return;
+  inject(cur);
+  document.getElementById('selector').classList.add('hide');
+  setTimeout(()=>{
+    document.getElementById('selector').style.display='none';
+    document.getElementById('app').classList.add('show');
+    document.getElementById('nbts').style.display='flex';
+    upd();
+  },700);
+}
+
+function reset(){
+  document.getElementById('app').classList.remove('show');
+  document.getElementById('nbts').style.display='none';
+  const s=document.getElementById('selector');
+  s.style.display='flex';s.classList.remove('hide');
+  document.querySelectorAll('.rb').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('scta').classList.remove('show');
+  cur=null;
+}
+
+function inject(r){
+  const D=RD[r],c=D.c;
+  document.documentElement.style.setProperty('--rc',c);
+  document.getElementById('sbd').style.background=c;
+  t('sbr',D.n);
+  h('i-ey',`<span class="ey-line" style="background:var(--y)"></span><span style="color:var(--y)">${D.i} ${D.n} · Sistema consultivo · 4 fases</span>`);
+  t('i-hl','Marketing de Alto Octanaje para tu negocio');
+  t('i-prob',D.intro.prob);
+  t('i-pdesc',D.intro.pd);
+  // F1
+  t('f1-bar',`${D.i} ${D.f1.bar}`);
+  t('f1-pain',D.f1.pain);
+  t('f1-src',D.f1.src);
+  t('f1-desc',D.f1.desc);
+  t('f1-out',D.f1.out);
+  // F2
+  t('f2-bar',`${D.i} ${D.f2.bar}`);
+  t('f2-desc',D.f2.desc);
+  t('f2-out',D.f2.out);
+  h('f2-bp',D.f2.bp.map(([l,v],i)=>`<div class="bp-row" style="background:${i%2===0?'var(--bg)':'var(--bg3)'}"><span class="bp-lbl">${l}</span><span class="bp-val">${v}</span></div>`).join(''));
+  // F3
+  t('f3-bar',`${D.i} ${D.f3.bar}`);
+  t('f3-desc',D.f3.desc);
+  t('f3-pname',D.f3.pname);
+  t('f3-out',D.f3.out);
+  // F4
+  t('f4-bar',`${D.i} ${D.f4.bar}`);
+  t('f4-desc',D.f4.desc);
+  t('f4-out',D.f4.out);
+  t('fin-sub',D.fin);
+}
+
+function gt(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+function nav(d){idx=Math.max(0,Math.min(SECS.length-1,idx+d));gt(SECS[idx]);un()}
+function un(){
+  document.getElementById('bprev').disabled=idx===0;
+  const nb=document.getElementById('bnext');
+  nb.disabled=idx===SECS.length-1;
+  nb.textContent=idx===SECS.length-1?'✓ Fin':'Siguiente →';
+}
+function upd(){
+  const c=document.getElementById('ct');
+  const p=Math.round((c.scrollTop/(c.scrollHeight-c.clientHeight))*100)||0;
+  document.getElementById('pgf').style.width=p+'%';
+  document.getElementById('pgp').textContent=p+'%';
+  SECS.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const r=el.getBoundingClientRect();
+    if(r.top<=180&&r.bottom>180)idx=i;
+  });
+  un();
+  document.querySelectorAll('.ni').forEach(e=>e.classList.remove('act'));
+  const ni=document.getElementById('ni-'+SECS[idx]);
+  if(ni)ni.classList.add('act');
+}
+document.getElementById('ct').addEventListener('scroll',upd);
+
+function om(id){
+  const a=ARTS[id];if(!a)return;
+  const pc={f1:'var(--f1)',f2:'var(--f2)',f3:'var(--f3)',f4:'var(--f4)'}[a.f.substring(0,2).toLowerCase()]||'var(--y)';
+  h('mb',`
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+      <span style="font-size:1.6rem">${a.i}</span>
+      <div>
+        <div style="font-family:var(--fm);font-size:.58rem;color:${pc};letter-spacing:.18em;text-transform:uppercase;margin-bottom:.18rem">${a.f} · ${a.fmt}</div>
+        <div style="font-size:.95rem;font-weight:700;line-height:1.2">${a.n}</div>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--gray3);line-height:1.7;margin-bottom:1rem">${a.d}</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.9rem">
+      <div style="background:var(--bg);border-radius:3px;padding:.85rem;border:1px solid var(--bg3)">
+        <div style="font-family:var(--fm);font-size:.56rem;color:var(--f1);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.45rem">Insumos</div>
+        ${a.ins.map(x=>`<div style="font-size:.74rem;color:var(--gray3);padding:.22rem 0;border-bottom:1px solid var(--bg3);display:flex;gap:.35rem"><span style="color:var(--f1);flex-shrink:0">←</span>${x}</div>`).join('')}
+      </div>
+      <div style="background:var(--bg);border-radius:3px;padding:.85rem;border:1px solid var(--bg3)">
+        <div style="font-family:var(--fm);font-size:.56rem;color:var(--f2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.45rem">Produce</div>
+        ${a.out.map(x=>`<div style="font-size:.74rem;color:var(--gray3);padding:.22rem 0;border-bottom:1px solid var(--bg3);display:flex;gap:.35rem"><span style="color:var(--f2);flex-shrink:0">→</span>${x}</div>`).join('')}
+      </div>
+    </div>
+    <div style="background:rgba(247,195,26,.05);border:1px solid rgba(247,195,26,.15);border-radius:3px;padding:.75rem .9rem">
+      <div style="font-family:var(--fm);font-size:.56rem;color:var(--y);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.3rem">Lo clave</div>
+      <p style="font-size:.78rem;color:var(--gray3);line-height:1.6">${a.k}</p>
+    </div>`);
+  document.getElementById('mo').classList.add('open');
+}
+function cm(e){
+  if(e&&e.target!==document.getElementById('mo')&&e.target!==document.getElementById('mc'))return;
+  document.getElementById('mo').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cm({target:document.getElementById('mo')})});
+</script>
+</body>
+</html>
