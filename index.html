@@ -341,7 +341,16 @@ section{padding:7rem 3.5rem}
   transition:background .2s,border-color .2s;white-space:nowrap;
 }
 .art-link:hover{background:rgba(247,195,26,.08);border-color:var(--y)}
-
+  
+.art-link {
+  color: var(--y);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: .75rem;
+  transition: opacity .2s;
+}
+.art-link:hover { opacity: .7; }
+  
 /* ── DASHBOARD SECTION ──────────────────────────────────────────── */
 #dashboard{background:var(--bg2)}
 .dash-layout{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start}
@@ -499,7 +508,8 @@ footer{
   <h1 class="hero-title">Mapa Estratégico<br>de Marketing<br><em>de Alto Octanaje</em></h1>
   <p class="hero-sub">Un sistema de 4 fases que convierte el marketing en una ventaja competitiva medible, escalable y replicable para empresas B2B y B2C.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="#metodo">Explorar el método</a>
+    <a class="btn-primary" href="demo_metodo_alto_octanaje.html" target="_blank">▶ Ver Demo Interactiva</a>
+    <a class="btn-ghost" href="#metodo">Explorar el método</a>
     <a class="btn-ghost" href="#recursos">Ver recursos</a>
   </div>
 
@@ -847,30 +857,33 @@ footer{
       </tr>
     </thead>
     <tbody>
-      <tr><td class="art-name">Protocolo de Onboarding</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Proceso</td><td>Consultor</td><td><a class="art-link" href="LINK_PROTOCOLO_ONBOARDING" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Checklist Diagnóstico (XLSX)</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Diagnóstico</td><td>Consultor + Cliente</td><td><a class="art-link" href="LINK_CHECKLIST_DIAGNOSTICO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Guía de uso del Checklist</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Instrucción</td><td>Consultor</td><td><a class="art-link" href="LINK_GUIA_USO_CHECKLIST" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Dashboard Ejecutivo (XLSX)</td><td><span class="art-fase-badge tag-f1">F1+F4</span></td><td>Visualización</td><td>Cliente</td><td><a class="art-link" href="LINK_DASHBOARD_EJECUTIVO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Guía de lectura del Dashboard</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Instrucción</td><td>Cliente</td><td><a class="art-link" href="LINK_GUIA_LECTURA_DASHBOARD" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Canvas Mapa Estratégico</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Estrategia</td><td>Consultor + Cliente</td><td><a class="art-link" href="LINK_CANVAS_MAPA_ESTRATEGICO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Manual Metodológico completo</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Referencia</td><td>Consultor</td><td><a class="art-link" href="LINK_MANUAL_METODOLOGICO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Plantilla Buyer Persona / OKRs / Plan</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Estrategia</td><td>Consultor + Cliente</td><td><a class="art-link" href="LINK_PLANTILLA_BUYER_PERSONA" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Criterios de transición entre fases</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Control</td><td>Consultor</td><td><a class="art-link" href="LINK_CRITERIOS_TRANSICION" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Glosario metodológico</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Referencia</td><td>Cliente + Consultor</td><td><a class="art-link" href="LINK_GLOSARIO_METODOLOGICO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Arquitectura landing page (Word)</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Digital</td><td>Equipo de desarrollo</td><td><a class="art-link" href="LINK_ARQUITECTURA_LANDING" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Estructura de blogs × 5</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Digital</td><td>Equipo de contenido</td><td><a class="art-link" href="LINK_ESTRUCTURA_BLOGS" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Plantillas RRSS (PDF/Canva)</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Digital</td><td>Equipo de contenido</td><td><a class="art-link" href="LINK_PLANTILLAS_RRSS" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Brochure B2B (Word editable)</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Equipo comercial</td><td><a class="art-link" href="LINK_BROCHURE_B2B" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Ficha técnica del producto (XLSX)</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Equipo comercial</td><td><a class="art-link" href="LINK_FICHA_TECNICA" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Propuestas comerciales por rubro × 5</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Equipo comercial</td><td><a class="art-link" href="LINK_PROPUESTAS_COMERCIALES" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Resumen Ejecutivo del método</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Cliente prospecto</td><td><a class="art-link" href="LINK_RESUMEN_EJECUTIVO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Estrategia de comunicación y canales</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Estrategia</td><td>Equipo directivo</td><td><a class="art-link" href="LINK_ESTRATEGIA_COMUNICACION" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Dashboard de Monitoreo (XLSX)</td><td><span class="art-fase-badge tag-f4">F4</span></td><td>Control</td><td>Cliente</td><td><a class="art-link" href="LINK_DASHBOARD_MONITOREO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Flujograma del método (PDF)</td><td><span class="art-fase-badge tag-f4">F4</span></td><td>Proceso</td><td>Grupo 2 / Consultores</td><td><a class="art-link" href="LINK_FLUJOGRAMA_METODO" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Documentación de procesos internos</td><td><span class="art-fase-badge tag-f4">F4</span></td><td>Proceso</td><td>Equipo Creative Place</td><td><a class="art-link" href="LINK_DOCUMENTACION_PROCESOS" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Matriz de Fases y Artefactos (XLSX)</td><td><span class="art-fase-badge" style="background:rgba(255,255,255,.08);color:var(--gray)">ALL</span></td><td>Central</td><td>Todo el equipo</td><td><a class="art-link" href="LINK_MATRIZ_FASES_ARTEFACTOS" target="_blank">Abrir →</a></td></tr>
-      <tr><td class="art-name">Informe de Diagnóstico (plantilla)</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Output</td><td>Cliente</td><td><a class="art-link" href="LINK_INFORME_DIAGNOSTICO" target="_blank">Abrir →</a></td></tr>
-    </tbody>
+  <tr><td class="art-name">Protocolo de Onboarding</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Proceso</td><td>Consultor</td><td><a href="https://docs.google.com/document/d/1xPuDq0V0UsHW0gHNxt2arbOzsIqYLfmb/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Checklist Diagnóstico (XLSX)</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Diagnóstico</td><td>Consultor + Cliente</td><td><a href="https://docs.google.com/spreadsheets/d/1iwE7S4FGkcZj_Tigeep_5IpNK6Ampa6n/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Guía de uso del Checklist</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Instrucción</td><td>Consultor</td><td><a href="https://docs.google.com/document/d/10VPNBUDl-lsZor6jRl_7Wj9nrmPdexm8/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Dashboard Ejecutivo (XLSX)</td><td><span class="art-fase-badge tag-f1">F1+F4</span></td><td>Visualización</td><td>Cliente</td><td><a href="https://docs.google.com/spreadsheets/d/1n2lBiJ-VGYKdwgu_4CD3Y3u1Mn4ei9dN/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Guía de lectura del Dashboard</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Instrucción</td><td>Cliente</td><td><a href="https://docs.google.com/document/d/1jiKUbIPyMFzZvsc1zN1il-UBHWM3OyM3/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Informe de Diagnóstico (plantilla)</td><td><span class="art-fase-badge tag-f1">F1</span></td><td>Output</td><td>Cliente</td><td><a href="https://docs.google.com/document/d/1j-b8WCc1GScr5R29_divcXKsoX1EmknC/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Buyer Persona (2 perfiles)</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Estrategia</td><td>Consultor + Cliente</td><td><a href="https://docs.google.com/document/d/1J-ofpz7DqSZc7v4s4v5OKa8Awh6hgLCl/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Estrategia de Marca</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Estrategia</td><td>Consultor + Cliente</td><td><a href="https://docs.google.com/document/d/1LoF61GtuFF85EZcitBTKiYYHs9SqXdNO/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">OKRs + Plan de Marketing</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Estrategia</td><td>Consultor + Cliente</td><td><a href="https://docs.google.com/document/d/1iK2qRP1uP7J6FSl2jh5YPeSSWhgX6deG/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Criterios de transición entre fases</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Control</td><td>Consultor</td><td><a href="https://docs.google.com/document/d/1WFQ8Seqx6dz_lx1fDwC2wwyXebFzeVMj/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Glosario metodológico</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Referencia</td><td>Cliente + Consultor</td><td><a href="https://docs.google.com/document/d/1KuXCnmiM6grTgv6Nvkr8uK75ShKtJH7B/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Estrategia de Comunicación y Canales</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Estrategia</td><td>Consultor + Cliente</td><td><a href="https://docs.google.com/spreadsheets/d/1_jbBVFlNSGQz2OojI_Aash_FuuHaVpXP/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Brochure CP — El Método</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Equipo comercial</td><td><a href="https://docs.google.com/document/d/1Kn86rUK_PLqu-G7bZND20zkOWNKxAAVz/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Brochure Cliente (template)</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Cliente</td><td><a href="https://docs.google.com/document/d/1efLEETQRGZ4iii94uRL_dRtZR61QB2ir/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Ficha Técnica del Producto (XLSX)</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Equipo comercial</td><td><a href="https://docs.google.com/spreadsheets/d/1tWpSjvDdRr9RH-AFHZTZxA-qDJgPmz84/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Propuestas por Rubro × 4</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Equipo comercial</td><td><a href="https://drive.google.com/drive/folders/1pZ9XHQg1uzq4m1L6Z9Xiah4dWO-djVhj?usp=drive_link" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Resumen Ejecutivo del método</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Comercial</td><td>Cliente prospecto</td><td><a href="https://docs.google.com/document/d/18fXj3-Uxa0mzCA3r_4_BF7r1LV-w4_e_/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Protocolo de Entrega F3 + F4</td><td><span class="art-fase-badge tag-f3">F3+F4</span></td><td>Proceso</td><td>Consultor</td><td><a href="https://docs.google.com/document/d/1R6i_jq4yA-frf-r6boCw6fhGJW4Yq0-p/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Dashboard de Monitoreo (XLSX)</td><td><span class="art-fase-badge tag-f4">F4</span></td><td>Control</td><td>Cliente</td><td><a href="https://docs.google.com/spreadsheets/d/1G7QnGgi1rhA1X3bxRqbYI_O8uCspDbu2/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Flujograma del método (XLSX)</td><td><span class="art-fase-badge tag-f4">F4</span></td><td>Proceso</td><td>Grupo 2 / Consultores</td><td><a href="https://docs.google.com/spreadsheets/d/1uNBwoKhACQsnQerlwLXmVdhPL4f4rniH/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Documentación de procesos internos</td><td><span class="art-fase-badge tag-f4">F4</span></td><td>Proceso</td><td>Equipo Creative Place</td><td><a href="LINK_DRIVE_PROCESOS" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Demo Interactiva del método</td><td><span class="art-fase-badge" style="background:rgba(247,195,26,.15);color:var(--y)">ALL</span></td><td>Digital</td><td>Todo el equipo</td><td><a href="demo_metodo_alto_octanaje.html" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Matriz de Fases y Artefactos (XLSX)</td><td><span class="art-fase-badge" style="background:rgba(255,255,255,.08);color:var(--gray)">ALL</span></td><td>Central</td><td>Todo el equipo</td><td><a href="LINK_DRIVE_MATRIZ" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Canvas Mapa Estratégico</td><td><span class="art-fase-badge tag-f2">F2</span></td><td>Estrategia</td><td>Consultor + Cliente</td><td><a href="https://drive.google.com/file/d/1oJ6W-s-stFV5VGGiTBd8eOYoIQjs4hNm/view?usp=sharing" target="_blank" class="art-link">Abrir →</a></td>/tr>
+  <tr><td class="art-name">Arquitectura Landing Page</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Digital</td><td>Equipo de desarrollo</td><td><a href="https://docs.google.com/document/d/1-Tv5AYLIDbg_7f8toKq4v-aSrFkA9nLC/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank" class="art-link">Abrir →</a></td></tr>
+  <tr><td class="art-name">Plantillas RRSS (PDF/Canva)</td><td><span class="art-fase-badge tag-f3">F3</span></td><td>Digital</td><td>Equipo de contenido</td><td><a href="LINK_DRIVE_plantillas" target="_blank" class="art-link">Abrir →</a></td></tr>
+</tbody>
   </table>
 </section>
 
@@ -915,66 +928,108 @@ footer{
 <section id="recursos">
   <span class="sec-label reveal">Caja de herramientas</span>
   <h2 class="sec-title reveal">Recursos<br><span class="yellow">para el Cliente</span></h2>
-  <p class="sec-desc reveal">Todos los entregables del método en un solo lugar. Actualiza los enlaces a continuación con las URLs reales de Google Drive.</p>
+  <p class="sec-desc reveal">Todos los entregables del método en un solo lugar.</p>
 
   <div class="rec-grid">
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">📋</div>
-      <div class="rec-name">Checklist Diagnóstico</div>
-      <div class="rec-desc">38 ítems ponderados en 4 áreas. Calcula el Índice de Madurez automáticamente.</div>
-      <div class="rec-format">XLSX · Google Drive</div>
-      <div class="rec-arrow">→</div>
-    </a>
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">📊</div>
-      <div class="rec-name">Dashboard Ejecutivo</div>
-      <div class="rec-desc">Visualización del índice de madurez global y por área. Fórmulas activas.</div>
-      <div class="rec-format">XLSX · Google Drive</div>
-      <div class="rec-arrow">→</div>
-    </a>
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">📘</div>
-      <div class="rec-name">Manual Metodológico</div>
-      <div class="rec-desc">Guía completa de las 4 fases, pasos detallados y criterios de transición.</div>
-      <div class="rec-format">Word + PDF · Google Drive</div>
-      <div class="rec-arrow">→</div>
-    </a>
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">🗺️</div>
-      <div class="rec-name">Canvas Mapa Estratégico</div>
-      <div class="rec-desc">Visualización integrada de la estrategia por fases. Versión vectorizada.</div>
-      <div class="rec-format">PDF · Google Drive</div>
-      <div class="rec-arrow">→</div>
-    </a>
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">📄</div>
-      <div class="rec-name">Brochure B2B</div>
-      <div class="rec-desc">Material de presentación del método para prospectos. Versión editable en Word.</div>
-      <div class="rec-format">Word + PDF · Google Drive</div>
-      <div class="rec-arrow">→</div>
-    </a>
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">💼</div>
-      <div class="rec-name">Propuestas por Rubro × 5</div>
-      <div class="rec-desc">5 adaptaciones del método a rubros empresariales distintos. Instancias del sistema.</div>
-      <div class="rec-format">Word + PDF · Google Drive</div>
-      <div class="rec-arrow">→</div>
-    </a>
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">⚙️</div>
-      <div class="rec-name">Ficha Técnica del Producto</div>
-      <div class="rec-desc">Alcance, entregables, duración y precio referencial por tipo de cliente.</div>
-      <div class="rec-format">XLSX · Google Drive</div>
-      <div class="rec-arrow">→</div>
-    </a>
-    <a class="rec-card reveal" href="#" target="_blank">
-      <div class="rec-icon">📁</div>
-      <div class="rec-name">Drive Completo</div>
-      <div class="rec-desc">Acceso a todos los recursos organizados por fase. Carpeta compartida del proyecto.</div>
-      <div class="rec-format">Google Drive · Acceso con enlace</div>
-      <div class="rec-arrow">→</div>
-    </a>
-  </div>
+  <a class="rec-card reveal" href="demo_metodo_alto_octanaje.html" target="_blank" style="border-color:rgba(247,195,26,.35)">
+    <div class="rec-icon">▶</div>
+    <div class="rec-name" style="color:var(--y)">Demo Interactiva</div>
+    <div class="rec-desc">Recorrido guiado del método por rubro — Restaurantes, Hotelería, Turismo, Servicios, Retail.</div>
+    <div class="rec-format">HTML · Se abre en el navegador</div>
+    <div class="rec-arrow" style="color:var(--y)">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/spreadsheets/d/1iwE7S4FGkcZj_Tigeep_5IpNK6Ampa6n/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">✅</div>
+    <div class="rec-name">Checklist Diagnóstico</div>
+    <div class="rec-desc">38 ítems ponderados en 4 áreas. Calcula el Índice de Madurez automáticamente.</div>
+    <div class="rec-format">XLSX · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/spreadsheets/d/1n2lBiJ-VGYKdwgu_4CD3Y3u1Mn4ei9dN/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">📊</div>
+    <div class="rec-name">Dashboard Ejecutivo</div>
+    <div class="rec-desc">Visualización del IMM global y por área. Fórmulas activas y vinculadas al Checklist.</div>
+    <div class="rec-format">XLSX · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/document/d/1LoF61GtuFF85EZcitBTKiYYHs9SqXdNO/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">🎨</div>
+    <div class="rec-name">Estrategia de Marca</div>
+    <div class="rec-desc">Propósito, valores, tono de voz, mensaje central y arquetipo.</div>
+    <div class="rec-format">Word · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/document/d/1iK2qRP1uP7J6FSl2jh5YPeSSWhgX6deG/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">🎯</div>
+    <div class="rec-name">OKRs + Plan de Marketing</div>
+    <div class="rec-desc">Objetivos medibles en 4 perspectivas BSC con plan de acción trimestral.</div>
+    <div class="rec-format">Word · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/spreadsheets/d/1_jbBVFlNSGQz2OojI_Aash_FuuHaVpXP/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">📡</div>
+    <div class="rec-name">Estrategia de Comunicación</div>
+    <div class="rec-desc">Motor automatizado: canales por IMM, mix de contenido, presupuesto y calendario 30 días.</div>
+    <div class="rec-format">XLSX · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/document/d/1Kn86rUK_PLqu-G7bZND20zkOWNKxAAVz/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">📰</div>
+    <div class="rec-name">Brochure CP — El Método</div>
+    <div class="rec-desc">Material de ventas para presentar el método a prospectos. Tono editorial.</div>
+    <div class="rec-format">Word · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/document/d/1efLEETQRGZ4iii94uRL_dRtZR61QB2ir/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">🏢</div>
+    <div class="rec-name">Brochure Cliente (template)</div>
+    <div class="rec-desc">Plantilla que CP le entrega al cliente en F3 para presentar su propia empresa.</div>
+    <div class="rec-format">Word · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://drive.google.com/drive/folders/1pZ9XHQg1uzq4m1L6Z9Xiah4dWO-djVhj?usp=drive_link" target="_blank">
+    <div class="rec-icon">💼</div>
+    <div class="rec-name">Propuestas por Rubro × 5</div>
+    <div class="rec-desc">Restaurantes · Hotelería · Turismo · Servicios · Retail. Diagnóstico y fases del rubro.</div>
+    <div class="rec-format">Word × 5 · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/spreadsheets/d/1tWpSjvDdRr9RH-AFHZTZxA-qDJgPmz84/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">⚙️</div>
+    <div class="rec-name">Ficha Técnica del Producto</div>
+    <div class="rec-desc">Catálogo de servicios y calculadora de propuesta con selección por fases e IGV automático.</div>
+    <div class="rec-format">XLSX · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/document/d/1R6i_jq4yA-frf-r6boCw6fhGJW4Yq0-p/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">🔒</div>
+    <div class="rec-name">Protocolo de Entrega F3+F4</div>
+    <div class="rec-desc">5 sesiones con paso a paso, guión y criterio de cierre. Registro y acta final.</div>
+    <div class="rec-format">Word · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/spreadsheets/d/1G7QnGgi1rhA1X3bxRqbYI_O8uCspDbu2/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">📈</div>
+    <div class="rec-name">Dashboard de Monitoreo</div>
+    <div class="rec-desc">10 KPIs dinámicos: CAC, LTV, ROI, conversión, alcance, NPS. Registro mensual.</div>
+    <div class="rec-format">XLSX · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://docs.google.com/spreadsheets/d/1uNBwoKhACQsnQerlwLXmVdhPL4f4rniH/edit?usp=sharing&ouid=104136837346579394197&rtpof=true&sd=true" target="_blank">
+    <div class="rec-icon">🗺️</div>
+    <div class="rec-name">Flujograma del Método</div>
+    <div class="rec-desc">3 vistas: horizontal por fases, vertical paso a paso y matriz RACI.</div>
+    <div class="rec-format">XLSX · Google Drive</div>
+    <div class="rec-arrow">→</div>
+  </a>
+  <a class="rec-card reveal" href="https://drive.google.com/drive/folders/1y5ZbecAjMtY6QT3zdzcWbF2XkOs7Lg0x?usp=sharing" target="_blank">
+    <div class="rec-icon">📁</div>
+    <div class="rec-name">Drive Completo</div>
+    <div class="rec-desc">Todos los recursos organizados por fase. Carpeta compartida del proyecto.</div>
+    <div class="rec-format">Google Drive · Acceso con enlace</div>
+    <div class="rec-arrow">→</div>
+  </a>
+</div>
 </section>
 
 <div class="divider"></div>
